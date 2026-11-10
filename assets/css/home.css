@@ -13,15 +13,16 @@ input,textarea,button,select{font-family:inherit}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 [data-hero-stage]{position:relative;display:flex;align-items:center;min-height:clamp(620px,46.15vw,886px);background:#f4f3f7;isolation:isolate}
 [data-hero-stage]>div{width:100%}
-[data-hero-media]{position:absolute;inset:0;overflow:hidden;z-index:0;pointer-events:none;background:#f4f3f7 url("../images/hero/golden-glass-cube-tech-platform-wide-v2.png") 50% 50%/cover no-repeat}
-[data-hero-scrim]{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(255,255,255,.28) 0%,rgba(255,255,255,.2) 38%,rgba(255,255,255,0) 50%)}
+[data-hero-media]{position:absolute;inset:0;overflow:hidden;z-index:0;pointer-events:none;background:#f4f3f7}
+[data-hero-video]{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:50% 32%;transform:translateZ(0)}
+[data-hero-scrim]{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(255,255,255,.5) 0%,rgba(255,255,255,.38) 36%,rgba(255,255,255,.14) 46%,rgba(255,255,255,0) 54%)}
 [data-hero-copy]{text-shadow:0 1px 0 rgba(255,255,255,.35)}
 [data-hero-copy] p{color:#2c2c33!important;text-shadow:0 0 16px rgba(255,255,255,.9),0 1px 1px rgba(255,255,255,.75)}
 [data-hero-copy] p a{color:#1a1a1e;border-bottom-color:#F2B300!important}
 [data-hero-copy] p a:hover{color:#000!important;border-bottom-color:#1a1a1e!important}
 [data-hero-kicker]{display:flex;align-items:center;gap:10px;width:max-content;padding:8px 12px;border:1px solid rgba(26,26,30,.12);border-radius:999px;background:rgba(255,255,255,.92);box-shadow:0 10px 30px -24px rgba(26,26,30,.4);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font:600 11px/1 'IBM Plex Mono',monospace;letter-spacing:.11em;text-transform:uppercase;color:#2c2c33}
 [data-hero-kicker]::before{content:'';width:7px;height:7px;border-radius:50%;background:#ffbd00;box-shadow:0 0 0 4px rgba(255,189,0,.16),0 0 16px rgba(255,189,0,.8)}
-@media (max-width:979px){[data-hero-scrim]{background:linear-gradient(180deg,rgba(255,255,255,.28),rgba(255,255,255,0) 26%)}[data-hero-stage]{display:block;min-height:0;background:#f4f3f7}[data-hero-stage]>div{padding-bottom:0!important}[data-hero-media]{position:relative;z-index:0;margin:-12px calc(-1*clamp(20px,4vw,48px)) 0;aspect-ratio:4/3;background-image:url("../images/hero/golden-glass-cube-tech-platform.png");background-size:cover;background-position:68% 50%}[data-hero-media]::after{content:'';position:absolute;left:0;right:0;top:0;height:14%;background:linear-gradient(#f4f3f7,rgba(244,243,247,0))}[data-counters]{margin-top:-16px!important}}
+@media (max-width:979px){[data-hero-scrim]{background:linear-gradient(180deg,rgba(255,255,255,.28),rgba(255,255,255,0) 26%)}[data-hero-stage]{display:block;min-height:0;background:#f4f3f7}[data-hero-stage]>div{padding-bottom:0!important}[data-hero-media]{position:relative;z-index:0;margin:-12px calc(-1*clamp(20px,4vw,48px)) 0;aspect-ratio:4/3}[data-hero-media]::after{content:'';position:absolute;left:0;right:0;top:0;height:14%;background:linear-gradient(#f4f3f7,rgba(244,243,247,0))}[data-hero-video]{object-position:100% 50%}[data-counters]{margin-top:-16px!important}}
 [data-about-section]{padding:clamp(56px,7vw,104px) 0;background:linear-gradient(145deg,#fbfbfc 0%,#f6f6f8 58%,#fffaf0 100%);border-top:1px solid #eeeef1;border-bottom:1px solid #eeeef1}
 [data-about-grid]{max-width:1520px;margin:0 auto;padding:0 clamp(20px,4vw,48px);display:grid;grid-template-columns:minmax(0,1.06fr) minmax(420px,.94fr);gap:clamp(28px,4vw,60px);align-items:stretch}
 [data-about-visuals]{position:relative;min-width:0;min-height:720px}
@@ -889,6 +890,7 @@ html[data-cv] :is(section,footer){content-visibility:auto}
 @keyframes srKinA{from{transform:translateX(0)}to{transform:translateX(-7%)}}
 @keyframes srKinB{from{transform:translateX(-40%)}to{transform:translateX(-33%)}}
 @keyframes srHeroCopy{to{opacity:0;translate:0 -70px}}
+@keyframes srHeroVideo{to{scale:1.1}}
 @keyframes srPan{from{translate:calc((100cqw - 100cqh*2.84)*.1) 0}to{translate:calc((100cqw - 100cqh*2.84)*.9) 0}}
 @supports (animation-timeline:view()){
 /* overflow:hidden would make these the scroll container for their children's view() timelines */
@@ -913,6 +915,7 @@ html[data-sr] [data-kinetic='-1']{animation:srKinA linear both;animation-timelin
 html[data-sr] [data-page-progress]{animation:srBarX linear both;animation-timeline:scroll(root block)}
 html[data-sr] [data-hero-stage]{view-timeline:--hero block}
 html[data-sr] [data-hero-copy]{animation:srHeroCopy linear both;animation-timeline:--hero;animation-range:exit 0% exit 90%}
+html[data-sr] [data-hero-video]{animation:srHeroVideo linear both;animation-timeline:--hero;animation-range:exit 0% exit 100%}
 html[data-sr] [data-about-main]{view-timeline:--about block}
 html[data-sr] [data-about-main] img{scale:1.08;animation:srDrift linear both;animation-timeline:--about}
 html[data-sr] :is([data-ind-left]>div:first-child,[data-ind-tabs],[data-ind-stage]){animation:srInd linear both;animation-timeline:--ind;animation-range:cover}
